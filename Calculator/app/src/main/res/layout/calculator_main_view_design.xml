@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="screen_design"
+            type="com.hj.calculator.MainActivity" />
+    </data>
+//why my designated colour cannot be implemented in this layout...?
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:background="@color/GreenFlask_greyD">
+
+    <TextView
+        android:id="@+id/txt_eqxn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@={view.eqxn}"
+        android:textColor="@color/GreenFlask_greyL"
+        android:textSize="24sp"
+        android:gravity="end"
+        android:layout_margin="10dp" />
+    <TextView
+        android:id="@+id/text_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@={view.result}"
+        android:textColor="@color/GreenFlask_greenN"
+        android:textSize="40sp"
+        android:gravity="end"
+        android:layout_margin="10dp" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:rowCount="5"
+        android:layout_margin="12dp"
+        android:layout_gravity="center_horizontal">
+        <Button
+            android:id="@+id/btn_ac"
+            android:onClick="@{(v) -> view.onClick(v)}"
+            android:text="@string/AC_button"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="@color/GreenFlask_black"
+            android:background="@drawable/other_button"
+            android:layout_margin="5dp"
+            android:padding="25dp" />
+
+        <Button
+            android:id="@+id/btn_7"
+            android:onClick="@{(v) -> view.onClick(v)}"
+            android:text="@string/button7"
+            android:textColor="@color/GreenFlask_greyL"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_width="84dp"
+            android:layout_margin ="5dp"
+            android:background="@drawable/number_button"
+            android:padding="25dp"/>
+        <Button
+            android:id="@+id/btn_4"
+            android:text="@string/button4"
+            android:textColor="@color/GreenFlask_greyL"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_width="84dp"
+            android:layout_margin ="5dp"
+            android:background="@drawable/number_button"
+            android:padding="25dp"/>
+        <Button
+            android:id="@+id/btn_1"
+            android:text="@string/button1"
+            android:textColor="@color/GreenFlask_greyL"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_width="88dp"
+            android:layout_margin ="5dp"
+            android:background="@drawable/number_button"
+            android:padding="25dp"/>
+        <Button
+            android:id="@+id/btn_0"
+            android:text="@string/button0"
+            android:textColor="@color/GreenFlask_greyL"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_width="84dp"
+            android:layout_margin ="5dp"
+            android:background="@drawable/number_button"
+            android:padding="25dp"/>
+
+
+        <Button
+            android:id="@+id/btn_rem"
+            android:text="@string/op_remainder"
+            android:textColor="@color/GreenFlask_black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_width="84dp"
+            android:layout_margin ="5dp"
+            android:background="@drawable/operator_button"
+            android:padding="25dp"/>
+        <Button
+            android:id="@+id/btn_8"
+            android:text="@string/button8"
+            android:textColor="@color/GreenFlask_greyL"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_width="84dp"
+            android:layout_margin ="5dp"
+            android:background="@drawable/number_button"
+            android:padding="25dp"/>
+        <Button
+            android:id="@+id/btn_5"
+            android:text="@string/button5"
+            android:textColor="@color/GreenFlask_greyL"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_width="84dp"
+            android:layout_margin ="5dp"
+            android:background="@drawable/number_button"
+            android:padding="25dp"/>
+        <Button
+            android:id="@+id/btn_2"
+            android:text="@string/button2"
+            android:textColor="@color/GreenFlask_greyL"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_width="84dp"
+            android:layout_margin ="5dp"
+            android:background="@drawable/number_button"
+            android:padding="25dp"/>
+        <Button
+            android:id="@+id/btn_."
+            android:text="@string/button."
+            android:textColor="@color/GreenFlask_greyL"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_width="84dp"
+            android:layout_margin ="5dp"
+            android:background="@drawable/number_button"
+            android:padding="25dp"/>
+
+
+        <Button
+            android:id="@+id/btn_div"
+            android:text="@string/op_divide"
+            android:textColor="@color/GreenFlask_black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_width="84dp"
+            android:layout_margin ="5dp"
+            android:background="@drawable/operator_button"
+            android:padding="25dp"/>
+        <Button
+            android:id="@+id/btn_9"
+            android:text="@string/button9"
+            android:textColor="@color/GreenFlask_greyL"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_width="84dp"
+            android:layout_margin ="5dp"
+            android:background="@drawable/number_button"
+            android:padding="25dp"/>
+        <Button
+            android:id="@+id/btn_6"
+            android:text="@string/button6"
+            android:textColor="@color/GreenFlask_greyL"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_width="84dp"
+            android:layout_margin ="5dp"
+            android:background="@drawable/number_button"
+            android:padding="25dp"/>
+        <Button
+            android:id="@+id/btn_3"
+            android:text="@string/button3"
+            android:textColor="@color/GreenFlask_greyL"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_width="84dp"
+            android:layout_margin ="5dp"
+            android:background="@drawable/number_button"
+            android:padding="25dp"/>
+        <Button
+            android:id="@+id/btn_eq"
+            android:text="@string/op_equal"
+            android:textColor="@color/GreenFlask_black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_columnSpan="2"
+            android:layout_width="172dp"
+            android:layout_margin ="5dp"
+            android:background="@drawable/other_button"
+            android:padding="25dp"/>
+
+        <Button
+            android:id="@+id/btn_mult"
+            android:text="@string/op_multiply"
+            android:textColor="@color/GreenFlask_black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_width="84dp"
+            android:layout_margin ="5dp"
+            android:background="@drawable/operator_button"
+            android:padding="25dp"/>
+
+
+        <Button
+            android:id="@+id/btn_subs"
+            android:text="@string/op_subtract"
+            android:textColor="@color/GreenFlask_black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_width="84dp"
+            android:layout_margin ="5dp"
+            android:background="@drawable/operator_button"
+            android:padding="25dp"/>
+        <Button
+            android:id="@+id/btn_add"
+            android:text="@string/op_add"
+            android:textColor="@color/GreenFlask_black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_width="84dp"
+            android:layout_margin ="5dp"
+            android:background="@drawable/operator_button"
+            android:padding="25dp"/>
+
+        <Button
+            android:id="@+id/btn_del"
+            android:layout_margin="5dp"
+            android:background="@drawable/other_button"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="25dp"
+            android:text="@string/DEL_button"
+            android:textAlignment="center"
+            android:textColor="@color/GreenFlask_black"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </GridLayout>
+
+</LinearLayout>
+
+</layout>
+

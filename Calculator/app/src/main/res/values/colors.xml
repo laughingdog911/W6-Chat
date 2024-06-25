@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="lavender">#FFBB86FC</color>
+    <color name="purple_200">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="softTurquoise">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="PythonWitch_teal">#00F59B</color>
+    <color name="PythonWitch_purple">#7014F2</color>
+    <color name="PythonWitch_grey">#A29CB1</color>
+    <color name="PythonWitch_black">#0C0A06</color>
+    <color name="PythonWitch_brown">#493F3E</color>
+
+    <color name="CyberPurple_blue">#00FFFF</color>
+    <color name="CyberPurple_greyD">#272D2D</color>
+    <color name="CyberPurple_greyL">#B1AB9D</color>
+    <color name="CyberPurple_purpleG">#726985</color>
+    <color name="CyberPurple_purple">#6900D1</color>
+
+    <color name="GreenFlask_black">#1D201E</color>
+    <color name="GreenFlask_greyD">#474A48</color>
+    <color name="GreenFlask_greyL">#BBC4BB</color>
+    <color name="GreenFlask_greenN">#79F77F</color>
+    <color name="GreenFlask_moss">#55765B</color>
+
+
+</resources>
