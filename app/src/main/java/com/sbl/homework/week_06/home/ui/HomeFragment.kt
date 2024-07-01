@@ -79,18 +79,17 @@ class HomeFragment : Fragment() {
             }
 
             binding.editButton -> {
-                val editText = EditText(context as MainActivity)
+                val editProfileMSGField = EditText(context as MainActivity)
                 AlertDialog.Builder(context as MainActivity).run {
                     setIcon(android.R.drawable.ic_menu_edit)
                     setTitle("프로필 메세지 편집")
-                    setView(editText)
+                    setView(editProfileMSGField)
                     setNegativeButton("취소"){ dialogInterface, _->
                         dialogInterface.dismiss()
                     }
                     setPositiveButton("확인"){ dialogInterface, _ ->
-                        
+                        binding.userProfileMessage.text = editProfileMSGField.text
                         dialogInterface.dismiss()
-
                     }
                     show()
                 }
@@ -100,23 +99,23 @@ class HomeFragment : Fragment() {
         }
             binding.addFriend -> {
                 val friendsEmail = userManager.getUserInfo()!!.email
-                var editText = EditText(context as MainActivity);
+                var FriendEmail = EditText(context as MainActivity);
                 AlertDialog.Builder(context as MainActivity).run {
                     setIcon(android.R.drawable.ic_input_add)
                     setTitle("친구 추가")
                     setMessage("친구의 이메일을 입력해주세요.")
-                    setView(editText)
+                    setView(FriendEmail)
                     setNegativeButton("취소"){ dialogInterface, _ ->
                         dialogInterface.dismiss()
                     }
                     setPositiveButton("추가"){ dialogInterface, _ ->
-
-                        helper.addFriend(friendsEmail, completion = {
-                        })
+                        helper.addFriend(friendsEmail, completion = {})
+                        //TODO recycler view 에 넣어주기
                         dialogInterface.dismiss()
                     }
                     show()
                 }
+
             }
     }
 

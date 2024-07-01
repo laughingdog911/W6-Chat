@@ -48,7 +48,7 @@
                 android:paddingLeft="5dp"
                 android:text="@string/TXT_HOME"
                 android:textColor="@color/greenLeaf"
-                android:textSize="24sp"
+                android:textSize="26sp"
                 android:textStyle="bold"
                 />
 
@@ -113,8 +113,8 @@
                 android:layout_height= "match_parent"
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/baseline_mode_edit">
-
+                android:background="@drawable/baseline_mode_edit"
+                android:onClick="@{(v) -> view.onClick(v)}">
             </ImageButton>
 
         </LinearLayout>

@@ -129,14 +129,14 @@ class RegisterFragment : Fragment() {
                                 phoneNumber,
                                 convertedUserType,
                                 completion = {                                       //8. signUp 함수 완료 여부
-                                    if (it) {                                                                     //T:
-                                        val transactionManager =                    //HomeFragment로 전환
+                                    if (it) {
+                                        val transactionManager =                     //TODO HomeFragment로 전환
                                             (activity as StartActivity).supportFragmentManager.beginTransaction()
                                         transactionManager.replace(
                                             R.id.registerView,
                                             LoginFragment()
                                         ).commit()
-                                    } else {                                                                       //F: alert dialog
+                                    } else {                                          //F: alert dialog
                                         AlertDialog.Builder(activity as StartActivity).run {
                                             setIcon(android.R.drawable.ic_dialog_alert)
                                             setMessage("회원가입에 실패했습니다. 잠시 후 다시 시도해주세요.")
