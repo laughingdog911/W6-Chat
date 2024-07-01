@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="view"
+            type="com.sbl.homework.week_06.home.models.FriendsListAdapter" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/itemListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        app:cardBackgroundColor="@color/stoneWhite"
+        app:cardCornerRadius="10dp"
+        app:contentPadding="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/friendProfilePicture"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/ic_user">
+            </ImageView>
+
+            <LinearLayout
+                android:id="@+id/info_holder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/friend_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="5dp"
+                    android:text="@string/TXT_FRIENDS"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/greenDeep">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/profileMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/TXT_MESSAGE"
+                    android:paddingLeft="5dp"
+                    android:textColor="@color/greenLeaf">
+                </TextView>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Week 06</string>
+    <string name="TXT_WELCOME">Welcome!</string>
+    <string name="e_mail">E-Mail</string>
+    <string name="TXT_PASSWORD">Password</string>
+    <string name="TXT_SIGN_IN">Sign In</string>
+    <string name="TXT_FORGOT_PASSWORD">Forgot Password</string>
+    <string name="TXT_SIGN_UP">Sign Up</string>
+    <string name="TXT_NAME">Name</string>
+    <string name="TXT_FRIENDS">Friends</string>
+    <string name="TXT_PHONE_NUMBER">Phone Number</string>
+    <string name="TXT_CONFIRM_PASSWORD">Confirm Password</string>
+    <string name="TXT_USERTYPE_STUDENT">Student</string>
+    <string name="TXT_USERTYPE_PROFESSOR">Professor</string>
+    <string name="TXT_USERTYPE_EMPLOYEE">Employee</string>
+    <string name="TXT_RESET_PASSWORD">Reset Password</string>
+    <string name="TXT_SEND_RESET_PASSWORD_MAIL">Send Reset Password Mail</string>
+    <string name="TXT_WILL_SEND_LINK">Enter your registered e-mail below,
+        \n and we will send you the password-reset link!</string>
+    <string name="TXT_HOME">Home</string>
+    <string name="TXT_MESSAGE">Message</string>
+    <string name="TXT_PROFILE_MESSAGE">Profile Message</string>
+    <string name="contractAgrmt">I agree to the terms of EULA</string>
+    <string name="infoAgrmt">I agree to the terms of private data collection</string>
+    <string name="read">읽기</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
