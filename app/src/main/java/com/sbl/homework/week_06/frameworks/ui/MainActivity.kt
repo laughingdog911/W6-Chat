@@ -8,6 +8,7 @@ import com.sbl.homework.week_06.R
 import com.sbl.homework.week_06.databinding.LayoutMainBinding
 
 class MainActivity: AppCompatActivity() {
+
     private lateinit var view: LayoutMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

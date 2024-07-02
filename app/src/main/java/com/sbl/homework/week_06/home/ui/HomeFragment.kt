@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
@@ -46,15 +47,22 @@ class HomeFragment : Fragment() {
         InfoDisplay()                                       // 처음에 나와야 할 정보들
         inFriendRecyclerView()                              // 친구들 리사이클러 뷰에 넣어주기?
 
+
         return binding.root
     }
 
     fun inFriendRecyclerView(){
         val adapter = FriendsListAdapter(friendsList.value)
-        helper.getFriends {  }
-        adapter.friendsList = friendsList.value!!
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(context as MainActivity)
+        helper.getFriends { success ->
+            if (success) {
+                adapter.friendsList = friendsList.value
+                adapter.notifyDataSetChanged()
+            } else {
+                Toast.makeText(context as MainActivity, "오류: 잠시 후 다시 시도해주세요.", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
 
@@ -63,7 +71,6 @@ class HomeFragment : Fragment() {
         helper.getProfileMessage { newestUserProfileMessage = it}
         newestFriendsCount =  "Friends (${friendsList.value!!.size})"
         inFriendRecyclerView()
-        //TODO : friend card views
     }
 
     fun onClick(v:View){
@@ -72,11 +79,8 @@ class HomeFragment : Fragment() {
             binding.refreshButton -> {
                 binding.userProfileMessage.text = newestUserProfileMessage
                 binding.friendCount.text = newestFriendsCount
-                adapter.friendsList
-                // TODO: refresh the screen with newly retrieved information
-                // TODO 1. User Profile Message
-                // TODO 2. friend Count
-                // TODO 3. friend Card view added
+                inFriendRecyclerView()
+                //TODO : displays friend card views
             }
 
             binding.editButton -> {
@@ -107,7 +111,11 @@ class HomeFragment : Fragment() {
                         dialogInterface.dismiss()
                     }
                     setPositiveButton("추가"){ dialogInterface, _ ->
-                        helper.addFriend(friendsEmail, completion = {})
+                        helper.addFriend(friendsEmail, completion = {
+                            success ->
+                            if (!success){
+                                Toast.makeText(context as MainActivity, "오류: 없는 이메일 주소입니다.", Toast.LENGTH_SHORT).show()}
+                        })
                         inFriendRecyclerView()
                         dialogInterface.dismiss()
                     }
