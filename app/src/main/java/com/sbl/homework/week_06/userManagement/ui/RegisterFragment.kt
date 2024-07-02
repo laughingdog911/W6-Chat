@@ -130,12 +130,9 @@ class RegisterFragment : Fragment() {
                                 convertedUserType,
                                 completion = {                                       //8. signUp 함수 완료 여부
                                     if (it) {
-                                        val transactionManager =                     //TODO HomeFragment로 전환
-                                            (activity as StartActivity).supportFragmentManager.beginTransaction()
-                                        transactionManager.replace(
-                                            R.id.registerView,
-                                            LoginFragment()
-                                        ).commit()
+                                        val intent = Intent(context as StartActivity, MainActivity::class.java) //activity 바꿔주기
+                                        (context as StartActivity).startActivity(intent)                    //시작하는 activity(startActivity())로 StartActivity를 지정, intent 전달.
+                                        (context as StartActivity).finish()                                 //HomeView로 전환 후 이 fragment의 생명주기 끝.
                                     } else {                                          //F: alert dialog
                                         AlertDialog.Builder(activity as StartActivity).run {
                                             setIcon(android.R.drawable.ic_dialog_alert)
