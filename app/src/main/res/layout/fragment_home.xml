@@ -10,12 +10,12 @@
             type="com.sbl.homework.week_06.home.ui.HomeFragment" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/HomeView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/stoneWhite">
 
     <LinearLayout
-        android:id="@+id/HomeView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"

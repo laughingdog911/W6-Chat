@@ -1,6 +1,7 @@
 package com.sbl.homework.week_06.home.ui
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,12 +13,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sbl.homework.week_06.R
+import com.sbl.homework.week_06.chat.ui.ChatDetailFragment
 import com.sbl.homework.week_06.databinding.FragmentHomeBinding
+import com.sbl.homework.week_06.databinding.FriendsListBinding
 import com.sbl.homework.week_06.frameworks.ui.MainActivity
 import com.sbl.homework.week_06.home.helper.HomeHelper
 import com.sbl.homework.week_06.home.models.FriendsDataModel
 import com.sbl.homework.week_06.home.models.FriendsListAdapter
 import com.sbl.homework.week_06.userManagement.helper.UserManagement
+import kotlinx.coroutines.newFixedThreadPoolContext
 
 
 class HomeFragment : Fragment() {
@@ -44,7 +48,7 @@ class HomeFragment : Fragment() {
         binding.view = this
         binding.lifecycleOwner = this
 
-        InfoDisplay()                                       // 처음에 나와야 할 정보들
+        infoDisplay()                                       // 처음에 나와야 할 정보들
         inFriendRecyclerView()                              // 친구들 리사이클러 뷰에 넣어주기?
 
 
@@ -52,13 +56,19 @@ class HomeFragment : Fragment() {
     }
 
     fun inFriendRecyclerView(){
-        val adapter = FriendsListAdapter(friendsList.value)
-        binding.recyclerView.adapter = adapter
+        val transactionManager = (activity as MainActivity).supportFragmentManager.beginTransaction()
+        adapter = FriendsListAdapter(friendsList.value ?: mutableListOf())     // adapter에 들어갈 데이터 지정
+        binding.recyclerView.adapter = adapter              // recyclerView의 adapter를 내가 만든 adapter로 지정
         binding.recyclerView.layoutManager = LinearLayoutManager(context as MainActivity)
-        helper.getFriends { success ->
-            if (success) {
-                adapter.friendsList = friendsList.value
-                adapter.notifyDataSetChanged()
+        adapter.setOnFriendClickListener(object: FriendsListAdapter.OnFriendClickListner{
+            override fun onFriendClick(view: FriendsListBinding, position: Int) {
+                transactionManager.replace(R.id.HomeView, ChatDetailFragment()).addToBackStack("").commit()
+            }
+        })
+        helper.getFriends { success ->                      // layoutManager 지정
+            if (success) {                                  // getFriends 함수 call
+                adapter.friendsList = friendsList.value ?: mutableListOf()     // friendsList의 값을 업데이트
+                adapter.notifyDataSetChanged()              // friendsList의 값이 업데이트 되면 알림
             } else {
                 Toast.makeText(context as MainActivity, "오류: 잠시 후 다시 시도해주세요.", Toast.LENGTH_SHORT).show()
             }
@@ -66,7 +76,7 @@ class HomeFragment : Fragment() {
     }
 
 
-    fun InfoDisplay(){
+    fun infoDisplay(){
         binding.userProfileName.text = userManager.getUserInfo()!!.name
         helper.getProfileMessage { newestUserProfileMessage = it}
         newestFriendsCount =  "Friends (${friendsList.value!!.size})"
@@ -101,7 +111,7 @@ class HomeFragment : Fragment() {
         }
             binding.addFriend -> {
                 val friendsEmail = userManager.getUserInfo()!!.email
-                val emailField = EditText(context as MainActivity);
+                val emailField = EditText(context as MainActivity)
                 AlertDialog.Builder(context as MainActivity).run {
                     setIcon(android.R.drawable.ic_input_add)
                     setTitle("친구 추가")
