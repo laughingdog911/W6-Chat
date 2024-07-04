@@ -51,7 +51,7 @@
                     android:id="@+id/profileMessage"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="@string/TXT_MESSAGE"
+                    android:text="@string/TXT_PROFILE_MESSAGE"
                     android:paddingLeft="5dp"
                     android:textColor="@color/greenLeaf">
                 </TextView>

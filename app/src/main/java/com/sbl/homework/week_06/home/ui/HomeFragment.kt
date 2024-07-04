@@ -104,6 +104,7 @@ class HomeFragment : Fragment() {
                     }
                     setPositiveButton("확인"){ dialogInterface, _ ->
                         newestUserProfileMessage = editProfileMSGField.text.toString()
+                        helper.setProfileMessage(newestUserProfileMessage, completion = {} )
                         dialogInterface.dismiss()
                     }
                     show()

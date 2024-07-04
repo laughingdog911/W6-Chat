@@ -18,7 +18,8 @@
     <string name="TXT_WILL_SEND_LINK">Enter your registered e-mail below,
         \n and we will send you the password-reset link!</string>
     <string name="TXT_HOME">Home</string>
-    <string name="TXT_MESSAGE">Message</string>
+    <string name="TXT_MY_MESSAGE">My Message</string>
+    <string name="TXT_FRIEND_MESSAGE">Friends Message</string>
     <string name="TXT_PROFILE_MESSAGE">Profile Message</string>
     <string name="contractAgrmt">I agree to the terms of EULA</string>
     <string name="infoAgrmt">I agree to the terms of private data collection</string>
