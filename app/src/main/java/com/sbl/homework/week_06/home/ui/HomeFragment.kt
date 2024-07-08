@@ -50,16 +50,15 @@ class HomeFragment : Fragment() {
     }
 
     private fun inFriendRecyclerView() {
-        val transactionManager =
-            (activity as MainActivity).supportFragmentManager.beginTransaction()
-        adapter =
-            FriendsListAdapter()
-        binding.recyclerView.adapter =
-            adapter              // recyclerView의 adapter를 내가 만든 adapter로 지정
+        adapter = FriendsListAdapter()
+        binding.recyclerView.adapter = adapter              // recyclerView의 adapter를 내가 만든 adapter로 지정
         binding.recyclerView.layoutManager = LinearLayoutManager(context as MainActivity)
         adapter.setOnFriendClickListener(object : FriendsListAdapter.OnFriendClickListner {
             override fun onFriendClick(view: FriendsListBinding, position: Int) {
-                transactionManager.replace(R.id.HomeView, ChatDetailFragment(HomeHelper.friendsList.value!![position].uid)).addToBackStack("")
+                val transactionManager =
+                    (activity as MainActivity).supportFragmentManager
+
+                transactionManager.beginTransaction().replace(R.id.HomeView, ChatDetailFragment(HomeHelper.friendsList.value!![position])).addToBackStack("")
                     .commit()
             }
         })
@@ -72,7 +71,6 @@ class HomeFragment : Fragment() {
                     .show()
             }
         }
-        infoDisplay()
     }
 
 
@@ -80,7 +78,6 @@ class HomeFragment : Fragment() {
         binding.userProfileName.text = userManager.getUserInfo()!!.name
         helper.getProfileMessage { newestUserProfileMessage = it }
         newestFriendsCount = "Friends (${HomeHelper.friendsList.value!!.size})"
-        inFriendRecyclerView()
     }
 
     fun onClick(v: View) {
@@ -90,7 +87,6 @@ class HomeFragment : Fragment() {
                 binding.userProfileMessage.text = newestUserProfileMessage
                 binding.friendCount.text = newestFriendsCount
                 inFriendRecyclerView()
-                //TODO : displays friend card views
             }
 
             binding.editButton -> {
