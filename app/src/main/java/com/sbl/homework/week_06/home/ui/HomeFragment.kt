@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sbl.homework.week_06.R
 import com.sbl.homework.week_06.chat.ui.ChatDetailFragment
@@ -28,7 +29,7 @@ class HomeFragment : Fragment() {
     private val userManager = UserManagement()
     private val helper = HomeHelper()
     private var newestUserProfileMessage: String = ""
-    private var newestFriendsCount: String = ""
+    var newestFriendsCount = MutableLiveData<String>("0")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,9 +42,7 @@ class HomeFragment : Fragment() {
         binding.lifecycleOwner = this
 
         newestUserProfileMessage = binding.userProfileMessage.text.toString()
-        newestFriendsCount = binding.friendCount.text.toString()
 
-        infoDisplay()                                       // 처음에 나와야 할 정보들
         inFriendRecyclerView()                              // 친구들 리사이클러 뷰에 넣어주기?
 
         return binding.root
@@ -66,6 +65,7 @@ class HomeFragment : Fragment() {
             if (it) {                                  // getFriends 함수 call
                 Log.d("HomeF.", HomeHelper.friendsList.value!!.toString())
                 adapter.notifyDataSetChanged()              // friendsList의 값이 업데이트 되면 알림
+                infoDisplay()                                       // 처음에 나와야 할 정보들
             } else {
                 Toast.makeText(context as MainActivity, "오류: 잠시 후 다시 시도해주세요.", Toast.LENGTH_SHORT)
                     .show()
@@ -77,16 +77,15 @@ class HomeFragment : Fragment() {
     private fun infoDisplay() {
         binding.userProfileName.text = userManager.getUserInfo()!!.name
         helper.getProfileMessage { newestUserProfileMessage = it }
-        newestFriendsCount = "Friends (${HomeHelper.friendsList.value!!.size})"
+        newestFriendsCount.value = "Friends (${HomeHelper.friendsList.value!!.size})"
     }
 
     fun onClick(v: View) {
 
         when (v) {
             binding.refreshButton -> {
-                binding.userProfileMessage.text = newestUserProfileMessage
-                binding.friendCount.text = newestFriendsCount
                 inFriendRecyclerView()
+                infoDisplay()
             }
 
             binding.editButton -> {
