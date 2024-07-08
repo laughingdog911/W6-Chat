@@ -18,18 +18,17 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true">
 
-            <TextClock
+            <TextView
                 android:id="@+id/MeTextClock"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:format12Hour="hh:mm a"
-                android:format24Hour="HH:mm"
+                android:text="HH:mm"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/MyMessageBubble"
                 app:layout_constraintTop_toTopOf="parent">
 
-            </TextClock>
+            </TextView>
 
             <androidx.cardview.widget.CardView
 
@@ -104,8 +103,7 @@
                 android:layout_marginStart="8dp"
                 app:layout_constraintStart_toEndOf="@+id/FriendMessageBubble"
                 app:layout_constraintTop_toTopOf="parent"
-                android:format12Hour="hh:mm a"
-                android:format24Hour="HH:mm">
+                android:text="HH:mm">
 
             </TextView>
         </androidx.constraintlayout.widget.ConstraintLayout>
