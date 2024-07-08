@@ -5,8 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sbl.homework.week_06.databinding.FriendsListBinding
 import com.sbl.homework.week_06.frameworks.ui.MainActivity
+import com.sbl.homework.week_06.home.helper.HomeHelper
 
-class FriendsListAdapter(var friendsList: MutableList<FriendsDataModel>?):
+class FriendsListAdapter():
     RecyclerView.Adapter<FriendsListAdapter.ViewHolder>(){
     interface OnFriendClickListner{
         fun onFriendClick(view: FriendsListBinding, position: Int)
@@ -22,7 +23,7 @@ class FriendsListAdapter(var friendsList: MutableList<FriendsDataModel>?):
         init {
             binding.itemListView.setOnClickListener{
                 val position = adapterPosition
-                if(position != RecyclerView.NO_POSITION && mOnFriendClickListner != null){
+                if(position != RecyclerView.NO_POSITION){
                     mOnFriendClickListner.onFriendClick(view = binding, position)
                 }
             }
@@ -40,14 +41,9 @@ class FriendsListAdapter(var friendsList: MutableList<FriendsDataModel>?):
         return ViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = friendsList!!.size
+    override fun getItemCount(): Int = HomeHelper.friendsList.value?.size ?: 0
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(friendsList!![position])
-    }
-
-    fun listUpdate(newList: MutableList<FriendsDataModel>) {
-        friendsList = newList.toMutableList()
-        notifyDataSetChanged()
+        holder.bind(HomeHelper.friendsList.value!![position])
     }
 }
