@@ -16,6 +16,7 @@
     android:background="@color/stoneWhite">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -34,9 +35,9 @@
                 android:id="@+id/homeVector"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:background="@drawable/baseline_home_filled"
                 android:layout_gravity="start"
                 android:layout_weight="1"
+                android:background="@drawable/baseline_home_filled"
                 android:padding="5dp" />
 
             <TextView
@@ -49,15 +50,14 @@
                 android:text="@string/TXT_HOME"
                 android:textColor="@color/greenLeaf"
                 android:textSize="26sp"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
 
             <ImageButton
                 android:id="@+id/refresh_button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:layout_gravity="end"
+                android:layout_weight="1"
                 android:background="@drawable/baseline_refresh"
                 android:onClick="@{(v) -> view.onClick(v)}" />
         </LinearLayout>
@@ -72,8 +72,8 @@
                 android:id="@+id/user_profilePicture"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:layout_gravity="center_vertical"
+                android:layout_weight="1"
                 android:background="@drawable/ic_user">
 
             </ImageView>
@@ -101,7 +101,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="5dp"
-                    android:text="@string/TXT_PROFILE_MESSAGE"
+                    android:text="@={view.newestUserProfileMessage}"
                     android:textSize="12sp">
 
                 </TextView>
@@ -110,11 +110,12 @@
             <ImageButton
                 android:id="@+id/editButton"
                 android:layout_width="0dp"
-                android:layout_height= "match_parent"
-                android:layout_weight="1"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
+                android:layout_weight="1"
                 android:background="@drawable/baseline_mode_edit"
                 android:onClick="@{(v) -> view.onClick(v)}">
+
             </ImageButton>
 
         </LinearLayout>
@@ -133,7 +134,7 @@
                 android:text="@={view.newestFriendsCount}"
                 android:textColor="@color/greenDeep"
                 android:textSize="14sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -157,7 +158,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/HomeView"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="1.0">
 
     </ImageButton>

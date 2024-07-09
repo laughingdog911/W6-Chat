@@ -1,5 +1,6 @@
 package com.sbl.homework.week_06.userManagement.ui
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
@@ -7,15 +8,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
+import androidx.appcompat.widget.DialogTitle
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.google.firebase.firestore.auth.User
 import com.sbl.homework.week_06.R
 import com.sbl.homework.week_06.databinding.FragmentLoginBinding
 import com.sbl.homework.week_06.frameworks.ui.MainActivity
-import com.sbl.homework.week_06.frameworks.ui.StartActivity
 import com.sbl.homework.week_06.userManagement.helper.UserManagement
+import com.sbl.homework.week_06.frameworks.ui.StartActivity as StartActivity
 
+
+fun makeAlertDialog(title: String, message: String, activity: Activity) {
+    AlertDialog.Builder(activity).run {
+        setIcon(android.R.drawable.ic_dialog_alert)
+        setTitle(title)
+        setMessage(message)
+        setPositiveButton("OK", null)
+        show()
+    }
+}
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
 
@@ -34,6 +46,7 @@ class LoginFragment : Fragment() {
 
         return binding.root
     }
+
 
 
     fun onClick(v: View) {
@@ -62,13 +75,8 @@ class LoginFragment : Fragment() {
                     }
                 }
                 if (infoList.any { it == empty }) {                                             // 1. 공백 필드
-                    AlertDialog.Builder(activity as StartActivity).run {
-                        setIcon(android.R.drawable.ic_dialog_alert)
-                        setTitle("공백 필드")
-                        setMessage("모든 필드를 채워주세요.")
-                        setPositiveButton("확인", null)
-                        show()
-                    }
+                    makeAlertDialog(
+                        "Empty Field", "You missed a field! ;)", activity as StartActivity)
                 }else {                                                                         //2. 다 채워 넣고 로그인 버튼을 눌렀을 때:
                     binding.progressCircular.visibility = VISIBLE                               //progress 띄우기.
                     helper.signIn(email, getPW, completion = {                                  //UserManagement 에서 가져온 signIn 함수:
@@ -77,13 +85,7 @@ class LoginFragment : Fragment() {
                             (context as StartActivity).startActivity(intent)                    //시작하는 activity(startActivity())로 StartActivity를 지정, intent 전달.
                             (context as StartActivity).finish()                                 //HomeView로 전환 후 이 fragment의 생명주기 끝.
                         }else{
-                            AlertDialog.Builder(activity as StartActivity).run {
-                                setIcon(android.R.drawable.ic_dialog_alert)
-                                setTitle("경고")
-                                setMessage("가입한 정보와 다릅니다.")
-                                setPositiveButton("Ok", null)
-                                show()
-                            }
+                            makeAlertDialog("Error", "Oups, let's try that again! :)", activity as StartActivity)
                             binding.progressCircular.visibility = INVISIBLE
                         }
                     })
@@ -91,5 +93,6 @@ class LoginFragment : Fragment() {
                 }
             }
         }
+
     }
 }

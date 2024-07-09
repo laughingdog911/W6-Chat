@@ -13,10 +13,10 @@ import androidx.fragment.app.Fragment
 import com.sbl.homework.week_06.R
 import com.sbl.homework.week_06.databinding.FragmentRegisterBinding
 import com.sbl.homework.week_06.frameworks.ui.MainActivity
-import com.sbl.homework.week_06.frameworks.ui.StartActivity
 import com.sbl.homework.week_06.userManagement.helper.UserManagement
 import com.sbl.homework.week_06.userManagement.models.UserTypeModel
 import java.util.Calendar
+import com.sbl.homework.week_06.frameworks.ui.StartActivity as StartActivity
 
 class RegisterFragment : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
@@ -71,37 +71,14 @@ class RegisterFragment : Fragment() {
                     }
                 }
                 if (infoList.any { it == empty }) {                            //1. 공백필드
-                    AlertDialog.Builder(context as StartActivity).run {
-                        setIcon(android.R.drawable.ic_dialog_alert)
-                        setTitle("공백 필드")
-                        setMessage("모든 필드를 채워주세요.")
-                        setPositiveButton("확인", null)
-                        show()
-                    }
+                    makeAlertDialog(
+                        "Empty Field", "Oups, You missed a field!", activity as StartActivity,)
                 } else if (!email.contains("@")) {                        //2. 잘못된 이메일 형식
-                    AlertDialog.Builder(context as StartActivity).run {
-                        setIcon(android.R.drawable.ic_dialog_alert)
-                        setTitle("잘못된 이메일")
-                        setMessage("잘못된 형식의 이메일입니다.")
-                        setPositiveButton("확인", null)
-                        show()
-                    }
+                    makeAlertDialog("Wrong Email Format", "You forgot to put @ ;)", activity as StartActivity)
                 } else if (getPW.length <= 7) {                                //3. 안전하지 않은 비밀번호
-                    AlertDialog.Builder(context as StartActivity).run {
-                        setIcon(android.R.drawable.ic_dialog_alert)
-                        setTitle("안전하지 않은 비밀번호")
-                        setMessage("보안을 위해 8자리 이상의 비밀번호를 설정해주세요.")
-                        setPositiveButton("확인", null)
-                        show()
-                    }
+                    makeAlertDialog("Unsafe Password", "Make it longer than 8 characters for safety!", activity as StartActivity)
                 } else if (getCheckPW != getPW) {                              //4. 비밀번호 확인과 불일치
-                    AlertDialog.Builder(context as StartActivity).run {
-                        setIcon(android.R.drawable.ic_dialog_alert)
-                        setTitle("일치하지 않는 비밀번호")
-                        setMessage("비밀번호와 비밀번호 확인이 일치하지 않습니다.")
-                        setPositiveButton("확인", null)
-                        show()
-                    }
+                    makeAlertDialog("Unmatched Password", "They aren't the same as the one you put up there!", activity as StartActivity)
                 } else {                                                                        //5. 마지막 회원가입 확인
                     AlertDialog.Builder(activity as StartActivity).run {
                         setTitle("회원가입")

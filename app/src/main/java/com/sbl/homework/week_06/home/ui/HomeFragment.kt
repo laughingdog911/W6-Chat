@@ -28,7 +28,7 @@ class HomeFragment : Fragment() {
 
     private val userManager = UserManagement()
     private val helper = HomeHelper()
-    private var newestUserProfileMessage: String = ""
+    var newestUserProfileMessage: String = ""
     var newestFriendsCount = MutableLiveData<String>("0")
 
     override fun onCreateView(
@@ -41,17 +41,17 @@ class HomeFragment : Fragment() {
         binding.view = this
         binding.lifecycleOwner = this
 
-        newestUserProfileMessage = binding.userProfileMessage.text.toString()
+        binding.userProfileMessage.text = newestUserProfileMessage
 
-        inFriendRecyclerView()                              // 친구들 리사이클러 뷰에 넣어주기?
+        inFriendRecyclerView()                                                  // 친구들 리사이클러 뷰에 넣어주기
 
         return binding.root
     }
 
     private fun inFriendRecyclerView() {
         adapter = FriendsListAdapter()
-        binding.recyclerView.adapter = adapter              // recyclerView의 adapter를 내가 만든 adapter로 지정
-        binding.recyclerView.layoutManager = LinearLayoutManager(context as MainActivity)
+        binding.recyclerView.adapter = adapter                                  // recyclerView의 adapter를 내가 만든 adapter로 지정
+        binding.recyclerView.layoutManager = LinearLayoutManager(context as MainActivity)           // layoutManager 지정
         adapter.setOnFriendClickListener(object : FriendsListAdapter.OnFriendClickListner {
             override fun onFriendClick(view: FriendsListBinding, position: Int) {
                 val transactionManager =
@@ -61,11 +61,11 @@ class HomeFragment : Fragment() {
                     .commit()
             }
         })
-        helper.getFriends {                      // layoutManager 지정
-            if (it) {                                  // getFriends 함수 call
+        helper.getFriends {                                                  // getFriends 함수 call
+            if (it) {
                 Log.d("HomeF.", HomeHelper.friendsList.value!!.toString())
-                adapter.notifyDataSetChanged()              // friendsList의 값이 업데이트 되면 알림
-                infoDisplay()                                       // 처음에 나와야 할 정보들
+                adapter.notifyDataSetChanged()                              // friendsList의 값이 업데이트 되면 알림
+                infoDisplay()                                               // 처음에 나와야 할 정보들
             } else {
                 Toast.makeText(context as MainActivity, "오류: 잠시 후 다시 시도해주세요.", Toast.LENGTH_SHORT)
                     .show()
@@ -99,7 +99,9 @@ class HomeFragment : Fragment() {
                     }
                     setPositiveButton("확인") { dialogInterface, _ ->
                         newestUserProfileMessage = editProfileMSGField.text.toString()
-                        helper.setProfileMessage(newestUserProfileMessage, completion = {})
+                        helper.setProfileMessage(newestUserProfileMessage, completion = {
+                            if (it) { binding.userProfileMessage.text = newestUserProfileMessage }
+                        })
                         dialogInterface.dismiss()
                     }
                     show()
